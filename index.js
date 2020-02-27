@@ -23,6 +23,8 @@ const port = 4000;
 let Data = {};
 
 function get(pathArray) {
+  console.log(`${new Date().toISOString()} GET /${pathArray.join("/")}`);
+
   let d = Data;
   try {
     for (const i of pathArray) {
@@ -35,6 +37,8 @@ function get(pathArray) {
 }
 
 function set(pathArray, value) {
+  console.log(`${new Date().toISOString()} SET /${pathArray.join("/")}`);
+
   let d = Data;
   for (let i = 0; i < pathArray.length - 1; i++) {
     d[pathArray[i]] =
