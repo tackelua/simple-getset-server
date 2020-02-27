@@ -39,10 +39,16 @@ function get(pathArray) {
 function set(pathArray, value) {
   console.log(`${new Date().toISOString()} SET /${pathArray.join("/")}`);
 
+  if (pathArray.length === 1 && Data === "null") {
+    Data = {};
+  }
+
   let d = Data;
   for (let i = 0; i < pathArray.length - 1; i++) {
     d[pathArray[i]] =
-      typeof d[pathArray[i]] === "object" ? d[pathArray[i]] : {};
+      typeof d[pathArray[i]] === "object" && d[pathArray[i]] !== "null"
+        ? d[pathArray[i]]
+        : {};
     d = d[pathArray[i]];
   }
   if (pathArray.length) {
